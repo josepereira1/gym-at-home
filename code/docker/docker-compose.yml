@@ -1,0 +1,77 @@
+version: '3'
+
+services:
+
+  # mysql database managment
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8000:8080"
+
+  frontend:
+    image: frontend
+    build: frontend/
+    ports:
+      - "8080:8080"
+
+  gymathome:
+      image: gymathome
+      build: gymathome/
+      ports:
+        - "8081:8080"
+
+  coredb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: core
+  core:
+    image: core
+    build: core/
+
+  clientdb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: clients
+  client:
+    image: client
+    build: client/
+
+  ptdb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: personaltrainer
+  pt:
+    image: pt
+    build: pt/
+
+  requestdb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: requests
+  request:
+    image: request
+    build: request/
+      
+  notificationdb:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: notification
+  notification:
+    image: notification
+    build: notification/
