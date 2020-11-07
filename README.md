@@ -1,5 +1,5 @@
 # gym-at-home
-Applications Engineering project
+Application Engineering project
 
 # Team
 - [João Marques](https://github.com/marquinhos87)
